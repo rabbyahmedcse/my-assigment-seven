@@ -5,6 +5,7 @@ import NavbarPage from "./component/Navbar";
 import Mosquee from "./component/mosquee";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Footer from "./component/Footer";
 
 const notoSerifbengali = Noto_Serif_Bengali({
   variable: "--font-geist-sans",
@@ -34,6 +35,7 @@ export default function RootLayout({ children }) {
         <div className="mx-auto w-full max-w-[1100px]">
           {children}
         </div>
+        <Footer></Footer>
         <ToastContainer
           position="top-center"
           autoClose={2500}

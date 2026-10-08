@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import SortDataPage from "../../sortData/SortData";
 import React from "react";
+import { toast } from "react-toastify";
 
 
 export const instant = false;
@@ -18,15 +19,17 @@ const CategoriesPage = async ({ params }) => {
   );
 
  if (!res.ok) {
-  toast.warning("Please wait");
+ 
     notFound()
+    toast.warning("Please wait");
    }
   
 
   const data = await res.json();
   if (!data || data.length === 0) {
-    toast.warning("Please wait");
+   
     notFound();
+    toast.warning("Please wait");
   }
   const resdata = [...data]
 
