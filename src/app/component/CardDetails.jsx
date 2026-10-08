@@ -17,19 +17,18 @@ const CardDetails = ({ n }) => {
   return (
     <div>
       <Link href={`/product/${n.id}`}>
-        <div className="rounded-xl border border-gray-200 bg-[#fbfdfb] p-3 transition hover:shadow-sm">
-          
+        <div className="rounded-xl border border-gray-200 bg-[#fbfdfb] p-3 transition hover:shadow-sm sm:p-4">
           <div className="flex items-start gap-3">
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#f1f7f2] text-2xl">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#f1f7f2] text-xl sm:h-11 sm:w-11 sm:text-2xl">
               {n.image}
             </div>
 
-            <div>
-              <h3 className="text-sm font-semibold text-gray-800">
+            <div className="min-w-0 flex-1">
+              <h3 className="truncate text-sm font-semibold text-gray-800 sm:text-[15px]">
                 {n.nameBn}
               </h3>
 
-              <p className="text-[11px] text-gray-500">
+              <p className="text-[11px] text-gray-500 sm:text-xs">
                 {n.unit === "kg"
                   ? "প্রতি কেজি"
                   : n.unit === "litre"
@@ -41,26 +40,22 @@ const CardDetails = ({ n }) => {
             </div>
           </div>
 
-          {/* Price Row */}
-          <div className="mt-3 flex items-end justify-between">
-            
-            <div>
-              <p className="text-[10px] text-gray-500">
+          <div className="mt-3 flex items-end justify-between gap-2">
+            <div className="min-w-0">
+              <p className="text-[10px] text-gray-500 sm:text-[11px]">
                 আজকের দাম
               </p>
 
-              <p className="text-sm font-bold text-gray-800">
+              <p className="text-sm font-bold text-gray-800 sm:text-base">
                 {n.today.toLocaleString("bn-BD")} টাকা
               </p>
             </div>
 
-            {/* Change Badge */}
             <span
-              className={`rounded-full px-2 py-1 text-[10px] font-medium ${changeStyle}`}
+              className={`shrink-0 rounded-full px-2 py-1 text-[10px] font-medium sm:px-2.5 sm:text-[11px] ${changeStyle}`}
             >
               {changeIcon} {n.change.pct.toLocaleString("bn-BD")}%
             </span>
-
           </div>
         </div>
       </Link>

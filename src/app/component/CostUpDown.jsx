@@ -19,52 +19,52 @@ const CostUpDownPage = async () => {
   }
 
   const data = await res.json();
-    if (!data || data.length === 0) {
-      toast.warning("Please wait");
-      notFound();
-    }
 
- 
-  const upCost = data.filter((item) => item.change.dir === "up").sort((a, b) => b.change.pct - a.change.pct).slice(0, 6);
+  if (!data || data.length === 0) {
+    toast.warning("Please wait");
+    notFound();
+  }
 
-  
-  const downCost = data.filter((item) => item.change.dir === "down").sort((a, b) =>  a.change.pct - b.change.pct ).slice(0, 6);
+  const upCost = data
+    .filter((item) => item.change.dir === "up")
+    .sort((a, b) => b.change.pct - a.change.pct)
+    .slice(0, 6);
+
+  const downCost = data
+    .filter((item) => item.change.dir === "down")
+    .sort((a, b) => a.change.pct - b.change.pct)
+    .slice(0, 6);
 
   return (
-   
-    <div className="w-full md-[40px] rounded-[30px] bg-[#f8faf8] px-4 py-8">
+    <div className="w-full rounded-[30px] bg-[#f8faf8] px-4 py-6 sm:px-6 sm:py-8 md:px-8 lg:px-10">
+      <section className="mx-auto w-full max-w-6xl">
+        <h1 className="mb-4 text-[16px] font-bold text-gray-800 sm:text-lg">
+          <span className="text-red-500">▲</span> আজ দাম বেড়েছে
+        </h1>
 
-  {/* Section A — আজ দাম বেড়েছে */}
-  <section >
-    <h1 className="mb-4 text-[16px] font-bold text-gray-800">
-      <span className="text-red-500">▲</span> আজ দাম বেড়েছে
-    </h1>
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
+          {upCost.map((n) => (
+            <CardDetails key={n.id} n={n} />
+          ))}
+        </div>
+      </section>
 
-    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-      {upCost.map((n) => (
-        <CardDetails key={n.id} n={n} />
-      ))}
+      <section className="mx-auto mt-8 w-full max-w-6xl">
+        <h1 className="mb-4 text-[16px] font-bold text-gray-800 sm:text-lg">
+          <span className="text-green-600">▼</span> আজ দাম কমেছে
+        </h1>
+
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
+          {downCost.map((n) => (
+            <CardDetails key={n.id} n={n} />
+          ))}
+        </div>
+      </section>
+
+      <section id="products" className="mx-auto w-full max-w-6xl">
+        <AllProductPage></AllProductPage>
+      </section>
     </div>
-  </section>
-
-
-  {/* Section B — আজ দাম কমেছে */}
-  <section className="mt-8">
-    <h1 className="mb-4 text-[16px] font-bold text-gray-800">
-      <span className="text-green-600">▼</span> আজ দাম কমেছে
-    </h1>
-
-    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-      {downCost.map((n) => (
-        <CardDetails key={n.id} n={n} />
-      ))}
-    </div>
-  </section>
-{/* Sob ponno */}
-<section id="products">
-<AllProductPage></AllProductPage>
-</section>
-</div>
   );
 };
 

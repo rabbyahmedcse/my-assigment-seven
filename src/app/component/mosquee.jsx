@@ -4,7 +4,7 @@ import MarqueeText from "react-marquee-text";
 import "react-marquee-text/dist/styles.css";
 
 const Mosquee = async () => {
-  "use cache";
+  
 
   const res = await fetch(
     "https://api.api-store.workers.dev/api/bazardor/products",
@@ -44,39 +44,22 @@ const Mosquee = async () => {
       >
         {data.map((item) => (
           <Link key={item.id} href={`/product/${item.id}`}>
-            <span className="flex h-10 items-center">
-
-              {/* Product */}
-              <span
-                className="
-                  mx-6
-                  inline-flex
-                  h-full
-                  items-center
-                  whitespace-nowrap
-                  text-[13px]
-                  leading-none
-                  text-gray-700
-                "
-              >
-                {/* Icon */}
-                <span className="mr-2 text-sm">
+            <span className="flex h-9 items-center sm:h-10">
+              <span className="mx-3 inline-flex h-full items-center whitespace-nowrap text-[11px] leading-none text-gray-700 sm:mx-6 sm:text-[13px]">
+                <span className="mr-1.5 text-xs sm:mr-2 sm:text-sm">
                   {item.categoryIcon}
                 </span>
 
-                {/* Name */}
                 <span className="font-medium">
                   {item.nameBn}
                 </span>
 
-                {/* Price */}
-                <span className="ml-2 font-bold">
+                <span className="ml-1.5 font-bold sm:ml-2">
                   {item.today} টাকা/{getBanglaUnit(item.unit)}
                 </span>
 
-                {/* Change */}
                 <span
-                  className={`ml-2 font-bold ${
+                  className={`ml-1.5 font-bold sm:ml-2 ${
                     item.change.dir === "up"
                       ? "text-red-500"
                       : "text-green-500"
@@ -87,9 +70,7 @@ const Mosquee = async () => {
                 </span>
               </span>
 
-              {/* Separator */}
               <span className="text-gray-300">•</span>
-
             </span>
           </Link>
         ))}

@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🛒 Bazar Dor
 
-## Getting Started
+### বাংলাদেশের নিত্যপ্রয়োজনীয় পণ্যের দৈনিক বাজারদর দেখার একটি সহজ ও আধুনিক ওয়েবসাইট।
 
-First, run the development server:
+Bazar Dor is a web-based market price tracking application designed to help users easily check the current prices of essential daily products in Bangladesh. Users can browse products by category, view price changes, check market-wise prices, and manage their profile.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+The website provides a clean and user-friendly interface so that users can quickly understand today's market prices and compare them with previous prices.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## 🚀 Live Project
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+🔗 Live Website: [Add your live website link here]
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 📌 Project Description
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The main goal of **Bazar Dor** is to make daily market price information easily accessible to users.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Users can:
 
-## Deploy on Vercel
+- View today's prices of different products
+- Browse products by category
+- See whether the price has increased or decreased
+- View detailed product information
+- Compare prices from different markets
+- Create an account and manage their profile
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The project focuses on providing a simple, responsive, and easy-to-use experience.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 🛠️ Technologies Used
+
+The project was developed using the following technologies:
+
+- **Next.js** – React framework for building the web application
+- **React.js** – For building reusable UI components
+- **JavaScript** – Main programming language
+- **Tailwind CSS** – For styling and responsive design
+- **Better Auth** – For user authentication
+- **React Toastify** – For showing notifications
+- **REST API** – For fetching product and category data
+- **Next.js App Router** – For routing and page management
+- **Git & GitHub** – For version control and project management
+
+---
+
+## ✨ Features
+
+### 1. 🏠 Home Page
+
+Users can see an overview of the latest market prices, popular products, and important market information from the home page.
+
+### 2. 📂 Product Categories
+
+Products are organized into different categories such as:
+
+- 🍚 Rice
+- 🥔 Vegetables
+- 🐟 Fish
+- 🥩 Meat
+- 🛢️ Oil
+- 🥚 Eggs
+
+Users can select a category to view related products.
+
+### 3. 💰 Daily Market Price
+
+Users can easily see the current price of each product along with its unit.
+
+For example:
+
+```text
+স্বর্ণমাছি চাল
+১৪৮ টাকা / কেজি

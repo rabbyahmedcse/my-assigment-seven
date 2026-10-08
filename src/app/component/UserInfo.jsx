@@ -12,7 +12,6 @@ const UserInfo = () => {
 
   const realUser = session?.user;
 
-  // ================= LOADING =================
   if (isPending) {
     return (
       <div className="flex items-center justify-center">
@@ -21,55 +20,44 @@ const UserInfo = () => {
     );
   }
 
-  // ================= NOT LOGGED IN =================
   if (!realUser) {
     return (
-      <div className="flex items-center gap-3">
-
-        {/* Sign In */}
+      <div className="flex items-center gap-1.5 sm:gap-3">
         <Link href="/signin">
           <button
             type="button"
-            className="rounded-md border border-green-600 bg-white px-4 py-2 text-sm font-semibold text-green-600 transition hover:bg-green-600 hover:text-white"
+            className="rounded-md border border-green-600 bg-white px-2.5 py-1.5 text-xs font-semibold text-green-600 transition hover:bg-green-600 hover:text-white sm:px-4 sm:py-2 sm:text-sm"
           >
             সাইন ইন
           </button>
         </Link>
 
-        {/* Sign Up */}
         <Link href="/signup">
           <button
             type="button"
-            className="rounded-md bg-green-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-green-700"
+            className="rounded-md bg-green-600 px-2.5 py-1.5 text-xs font-semibold text-white transition hover:bg-green-700 sm:px-4 sm:py-2 sm:text-sm"
           >
             সাইন আপ
           </button>
         </Link>
-
       </div>
     );
   }
- const handleSignOut=()=>{
-  
 
-   
+  const handleSignOut = () => {
     signOut();
     setOpen(false);
     toast.success("Sign Out successful");
-  }
-  // ================= LOGGED IN =================
+  };
+
   return (
     <div className="relative">
-
-      {/* ================= USER BUTTON ================= */}
       <button
         type="button"
         onClick={() => setOpen((prev) => !prev)}
-        className="flex items-center gap-2 rounded-lg px-2 py-1.5 transition hover:bg-gray-50"
+        className="flex items-center gap-1.5 rounded-lg px-1.5 py-1.5 transition hover:bg-gray-50 sm:gap-2 sm:px-2"
       >
-
-        {/* Avatar */}
-        <Avatar className="h-8 w-8">
+        <Avatar className="h-8 w-8 sm:h-9 sm:w-9">
           <Avatar.Image
             alt={realUser.name || "User"}
             src={realUser.image || ""}
@@ -80,14 +68,12 @@ const UserInfo = () => {
           </Avatar.Fallback>
         </Avatar>
 
-        {/* Name */}
-        <div className="hidden text-left sm:block">
-          <p className="text-xs font-semibold text-gray-800">
+        <div className="hidden max-w-[100px] text-left sm:block">
+          <p className="truncate text-xs font-semibold text-gray-800">
             {realUser.name}
           </p>
         </div>
 
-        {/* Arrow */}
         <span
           className={`text-xs text-gray-500 transition-transform ${
             open ? "rotate-180" : ""
@@ -95,27 +81,19 @@ const UserInfo = () => {
         >
           ▾
         </span>
-
       </button>
 
-      {/* ================= DROPDOWN ================= */}
       {open && (
         <>
-          {/* Outside Click Overlay */}
           <div
             className="fixed inset-0 z-40"
             onClick={() => setOpen(false)}
           />
 
-          {/* Dropdown Card */}
-          <div className="absolute right-0 top-12 z-50 w-64 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg">
-
-            {/* User Info */}
-            <div className="border-b border-gray-100 px-4 py-3">
-
+          <div className="absolute right-0 top-11 z-50 w-[calc(100vw-2rem)] max-w-64 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg sm:top-12">
+            <div className="border-b border-gray-100 px-3 py-3 sm:px-4">
               <div className="flex items-center gap-3">
-
-                <Avatar className="h-10 w-10">
+                <Avatar className="h-9 w-9 shrink-0 sm:h-10 sm:w-10">
                   <Avatar.Image
                     alt={realUser.name || "User"}
                     src={realUser.image || ""}
@@ -127,7 +105,6 @@ const UserInfo = () => {
                 </Avatar>
 
                 <div className="min-w-0">
-
                   <p className="truncate text-sm font-semibold text-gray-800">
                     {realUser.name}
                   </p>
@@ -135,18 +112,14 @@ const UserInfo = () => {
                   <p className="truncate text-[11px] text-gray-500">
                     {realUser.email}
                   </p>
-
                 </div>
-
               </div>
-
             </div>
 
-            {/* Profile */}
             <Link
               href="/profile"
               onClick={() => setOpen(false)}
-              className="flex items-center gap-2 px-4 py-3 text-xs text-gray-700 transition hover:bg-gray-50"
+              className="flex items-center gap-2 px-3 py-3 text-xs text-gray-700 transition hover:bg-gray-50 sm:px-4"
             >
               <span>👤</span>
 
@@ -155,11 +128,10 @@ const UserInfo = () => {
               </span>
             </Link>
 
-            {/* Sign Out */}
             <button
               type="button"
               onClick={handleSignOut}
-              className="flex w-full items-center gap-2 border-t border-gray-100 px-4 py-3 text-xs text-red-500 transition hover:bg-red-50"
+              className="flex w-full items-center gap-2 border-t border-gray-100 px-3 py-3 text-xs text-red-500 transition hover:bg-red-50 sm:px-4"
             >
               <span>↪</span>
 
@@ -167,11 +139,9 @@ const UserInfo = () => {
                 সাইন আউট
               </span>
             </button>
-
           </div>
         </>
       )}
-
     </div>
   );
 };

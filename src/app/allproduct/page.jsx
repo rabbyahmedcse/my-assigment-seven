@@ -8,8 +8,10 @@ const AllProductPage = async () => {
     "https://api.abcz.workers.dev/api/bazardor/products",
     {
       next: {
-        revalidate: 60, },} );
-
+        revalidate: 60,
+      },
+    }
+  );
 
   if (!res.ok) {
     toast.warning("Please wait");
@@ -23,29 +25,24 @@ const AllProductPage = async () => {
     notFound();
   }
 
-
-
-
-
   return (
-   
-    <div className="w-full md-[40px] rounded-[30px] bg-[#f8faf8] px-4 py-8">
+    <div className="w-full rounded-[30px] bg-[#f8faf8] px-4 py-6 sm:px-6 sm:py-8 md:px-8 lg:px-10">
+      <section className="mx-auto mt-4 w-full max-w-6xl sm:mt-6 md:mt-8">
+        <h1 className="mb-2 text-[16px] font-bold text-gray-800 sm:text-lg">
+          সব পণ্য
+        </h1>
 
+        <p className="mt-1 text-[11px] text-gray-500 sm:text-xs">
+          মোট {data.length}টি পণ্য দেখানো হচ্ছে
+        </p>
 
-
-
-<section className="mt-8">
-    <h1 className="mb-4 text-[16px] font-bold text-gray-800">সব পণ্য</h1>
-    <p className="mt-2 text-[11px] text-gray-500">
-    মোট {data.length}টি পণ্য দেখানো হচ্ছে
-  </p>
-    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-      {data.map((n) => (
-        <CardDetails key={n.id} n={n} />
-      ))}
+        <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
+          {data.map((n) => (
+            <CardDetails key={n.id} n={n} />
+          ))}
+        </div>
+      </section>
     </div>
-</section>
-</div>
   );
 };
 
