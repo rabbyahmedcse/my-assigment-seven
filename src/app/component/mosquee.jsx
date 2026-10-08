@@ -21,7 +21,7 @@ const Mosquee = async () => {
 
   const getBanglaUnit = (unit) => {
     if (unit === "kg") return "কেজি";
-    if (unit === "liter") return "লিটার";
+    if (unit === "litre") return "লিটার";
     if (unit === "piece") return "পিস";
     if (unit === "dozen") return "ডজন";
 

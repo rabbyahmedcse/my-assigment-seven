@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { useRouter } from "next/navigation";
 import {
   Form,
   Fieldset,
@@ -12,20 +11,19 @@ import {
   FieldError,
   Button,
 } from "@heroui/react";
-import { signUp } from "../../lib/auth-client";
+import { signIn, signUp } from "../../lib/auth-client";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 const SignUpPage = () => {
-  const router = useRouter();
+
 
   const onSubmit = async (e) => {
     e.preventDefault();
 
     const data = Object.fromEntries(new FormData(e.currentTarget));
 
-    console.log("Before:", data);
 
-    // Password match check
     if (data.password !== data.confirmPassword) {
       console.log("Password doesn't match");
       return;
@@ -45,11 +43,22 @@ const SignUpPage = () => {
       return;
     }
 
-    // Signup successful
-    console.log("Signup successful");
-
-    router.push("/");
+    if(resdata){
+      // toast.success("Successfully Sign up")
+    
+     redirect('/');
+    }
   };
+    const handleGoogleSignIn = async()=>{
+      const resData = await signIn.social({
+        provider:'google'
+      })
+    }
+    const handleGithubSignIn = async()=>{
+        const resdata = await signIn.social({
+          provider: "github"
+      })
+      }
 
   return (
     <div className="min-h-screen bg-[#f4f9f5] px-4 py-8">
@@ -164,7 +173,7 @@ const SignUpPage = () => {
 
             </FieldGroup>
 
-            {/* Sign Up Button */}
+          
             <Fieldset.Actions className="mt-3">
               <Button
                 type="submit"
@@ -177,7 +186,7 @@ const SignUpPage = () => {
           </Fieldset>
         </Form>
 
-        {/* Divider */}
+        
         <div className="my-3 flex items-center gap-2">
           <div className="h-px flex-1 bg-gray-200" />
 
@@ -188,10 +197,10 @@ const SignUpPage = () => {
           <div className="h-px flex-1 bg-gray-200" />
         </div>
 
-        {/* Social Login */}
+      
         <div className="grid grid-cols-2 gap-2">
 
-          <button
+          <button onClick={handleGoogleSignIn}
             type="button"
             className="flex h-8 items-center justify-center gap-1 rounded-md border border-gray-200 bg-white text-[10px] text-gray-600 transition hover:bg-gray-50"
           >
@@ -202,7 +211,7 @@ const SignUpPage = () => {
             Google দিয়ে চালিয়ে যান
           </button>
 
-          <button
+          <button onClick={handleGithubSignIn}
             type="button"
             className="flex h-8 items-center justify-center gap-1 rounded-md border border-gray-200 bg-white text-[10px] text-gray-600 transition hover:bg-gray-50"
           >
@@ -215,7 +224,6 @@ const SignUpPage = () => {
 
         </div>
 
-        {/* Login */}
         <p className="mt-3 text-center text-[10px] text-gray-500">
           অ্যাকাউন্ট আছে?{" "}
           <Link
