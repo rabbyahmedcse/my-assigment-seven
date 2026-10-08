@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import SortDataPage from "../../sortData/SortData";
 import React from "react";
 
@@ -16,11 +17,15 @@ const CategoriesPage = async ({ params }) => {
     }
   );
 
-  if (!res.ok) {
-    return null;
-  }
+ if (!res.ok) {
+    notFound()
+   }
+  
 
   const data = await res.json();
+  if (!data || data.length === 0) {
+    notFound();
+  }
   const resdata = [...data]
 
   return (

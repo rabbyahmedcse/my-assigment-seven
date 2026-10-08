@@ -1,10 +1,13 @@
+import Link from "next/link";
 import React from "react";
 
 const CardDetails = ({ n }) => {
   const isUp = n.change.dir === "up";
 
   return (
-    <div className="rounded-xl border border-gray-200 bg-[#fbfdfb] p-3 transition hover:shadow-sm">
+    <div>
+      <Link href={`/product/${n.id}`}>
+      <div className="rounded-xl border border-gray-200 bg-[#fbfdfb] p-3 transition hover:shadow-sm">
       <div className="flex items-start gap-3">
         <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#f1f7f2] text-2xl">
           {n.image}
@@ -18,7 +21,7 @@ const CardDetails = ({ n }) => {
           <p className="text-[11px] text-gray-500">
             {n.unit === "kg"
               ? "প্রতি কেজি"
-              : n.unit === "liter"
+              : n.unit === "litre"
               ? "প্রতি লিটার"
               : n.unit === "dozen"
               ? "প্রতি ডজন"
@@ -46,6 +49,8 @@ const CardDetails = ({ n }) => {
           {isUp ? "▲" : "▼"} {n.change.pct}%
         </span>
       </div>
+    </div>
+      </Link>
     </div>
   );
 };
