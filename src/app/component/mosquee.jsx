@@ -1,4 +1,5 @@
 
+import Link from "next/link";
 import React from "react";
 import MarqueeText from "react-marquee-text";
 import "react-marquee-text/dist/styles.css";
@@ -31,15 +32,17 @@ const Mosquee = async () => {
   return (
     <div className="w-full overflow-hidden border-y border-gray-200 bg-white">
       
-      <MarqueeText
+    
+     <MarqueeText
         className="!flex !h-full !items-center !leading-none"
         pauseOnHover={true}
         duration={13}
         direction="right"
       >
         {data.map((item) => (
+          <Link key={item.id} href={`/product/${item.id}`}>
           <span
-            key={item.id}
+            
             className="flex h-10 items-center"
           >
 
@@ -88,8 +91,10 @@ const Mosquee = async () => {
             <span className="text-gray-300">•</span>
 
           </span>
+          </Link>
         ))}
       </MarqueeText>
+    
     </div>
   );
 };

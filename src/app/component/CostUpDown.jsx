@@ -55,7 +55,9 @@ const CostUpDownPage = async () => {
     </div>
   </section>
 {/* Sob ponno */}
+<section id="products">
 <AllProductPage></AllProductPage>
+</section>
 </div>
   );
 };

@@ -35,7 +35,7 @@ const HeroPage = () => {
 
             {/* CTA */}
             <Link
-              href={'/allproduct'}
+              href="/#products"
               className="mt-4 inline-flex rounded-md bg-green-600 px-4 py-2 text-[12px] font-semibold text-white shadow-sm transition hover:bg-green-700 active:scale-95"
             >
               সব পণ্য দেখুন
