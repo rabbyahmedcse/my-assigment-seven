@@ -3,6 +3,8 @@ import CardDetails from "../component/CardDetails";
 import { toast } from "react-toastify";
 import { notFound } from "next/navigation";
 
+export const instant = false;
+
 const AllProductPage = async () => {
   const res = await fetch(
     "https://api.abcz.workers.dev/api/bazardor/products",

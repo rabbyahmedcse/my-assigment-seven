@@ -1,4 +1,3 @@
-
 import { Noto_Serif_Bengali } from "next/font/google";
 import "./globals.css";
 import NavbarPage from "./component/Navbar";
@@ -6,16 +5,12 @@ import Mosquee from "./component/mosquee";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Footer from "./component/Footer";
+import { Suspense } from "react";
 
 const notoSerifbengali = Noto_Serif_Bengali({
   variable: "--font-geist-sans",
   subsets: ["latin", "bengali"],
 });
-
-// const geistMono = Geist_Mono({
-//   variable: "--font-geist-mono",
-//   subsets: ["latin"],
-// });
 
 export const metadata = {
   title: "Create Next App",
@@ -27,18 +22,27 @@ export default function RootLayout({ children }) {
     <html
       lang="en"
       data-theme="light"
-      className={`${notoSerifbengali.variable}  h-full antialiased`}
+      className={`${notoSerifbengali.variable} h-full antialiased`}
     >
-      <body className="bg-[#f8faf8] min-h-full flex flex-col ">
-      <div className="sticky top-0 z-50 bg-white">
-    <NavbarPage />
-    <Mosquee />
-  </div>
-        
+      <body className="flex min-h-full flex-col bg-[#f8faf8]">
+        <div className="sticky top-0 z-50 bg-white">
+          <NavbarPage />
+
+          <Suspense
+            fallback={
+              <div className="h-10 w-full border-y border-gray-200 bg-white" />
+            }
+          >
+            <Mosquee />
+          </Suspense>
+        </div>
+
         <div className="mx-auto w-full max-w-[1100px]">
           {children}
         </div>
-        <Footer></Footer>
+
+        <Footer />
+
         <ToastContainer
           position="top-center"
           autoClose={2500}
