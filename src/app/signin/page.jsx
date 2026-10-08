@@ -14,41 +14,54 @@ import {
 } from "@heroui/react";
 import { signIn } from "../../lib/auth-client";
 import Link from "next/link";
+import { toast } from "react-toastify";
 
 const page = () => {
 
-  const onSubmit = async (e) => {
-    e.preventDefault();
-
-    const data = Object.fromEntries(new FormData(e.currentTarget));
-
-
-
-
-    const { data: resdata, error } = await signIn.email({
-        email: data.email,
-      password: data.password,
-      callbackURL: "/",
-    });
-
-
-    if (error) {
-      console.log("Signup Error:", error);
-      return;
-    }
-  
-
-  };
-  const handleGoogleSignIn = async()=>{
-    const resData = await signIn.social({
-      provider:'google'
-    })
-  }
-  const handleGithubSignIn = async()=>{
-    const resdata = await signIn.social({
-      provider: "github"
-  })
-  }
+    const onSubmit = async (e) => {
+        e.preventDefault();
+      
+        const data = Object.fromEntries(new FormData(e.currentTarget));
+      
+        const { data: resdata, error } = await signIn.email({
+          email: data.email,
+          password: data.password,
+          callbackURL: "/",
+        });
+      
+        if (error) {
+          toast.error("Sign in failed");
+          return;
+        }
+      
+        toast.success("Sign in successful");
+      };
+      
+      const handleGoogleSignIn = async () => {
+        const { data: resData, error } = await signIn.social({
+          provider: "google",
+        });
+      
+        if (error) {
+          toast.error("Google sign in failed");
+          return;
+        }
+      
+        toast.success("Google sign in successful");
+      };
+      
+      const handleGithubSignIn = async () => {
+        const { data: resData, error } = await signIn.social({
+          provider: "github",
+        });
+      
+        if (error) {
+          toast.error("GitHub sign in failed");
+          return;
+        }
+      
+        toast.success("GitHub sign in successful");
+      };
     return (
         <div className="min-h-screen bg-[#f4f9f5] px-4 py-8">
 

@@ -3,6 +3,8 @@ import { Noto_Serif_Bengali } from "next/font/google";
 import "./globals.css";
 import NavbarPage from "./component/Navbar";
 import Mosquee from "./component/mosquee";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const notoSerifbengali = Noto_Serif_Bengali({
   variable: "--font-geist-sans",
@@ -32,6 +34,19 @@ export default function RootLayout({ children }) {
         <div className="mx-auto w-full max-w-[1100px]">
           {children}
         </div>
+        <ToastContainer
+          position="top-center"
+          autoClose={2500}
+          hideProgressBar={false}
+          newestOnTop
+          closeOnClick
+          pauseOnHover
+          draggable
+          theme="light"
+          toastClassName="!mt-2 !min-h-[52px] !w-[350px] !rounded-xl !border !border-gray-200 !bg-white !px-4 !py-3 !text-gray-800 !shadow-xl"
+          bodyClassName="!p-0 !text-sm !font-medium"
+          progressClassName="!bg-green-600"
+        />
       </body>
     </html>
   );

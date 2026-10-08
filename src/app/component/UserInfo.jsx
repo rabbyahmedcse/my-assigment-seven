@@ -4,6 +4,7 @@ import { Avatar, Spinner } from "@heroui/react";
 import { useSession, signOut } from "../../lib/auth-client";
 import Link from "next/link";
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 
 const UserInfo = () => {
   const { data: session, isPending } = useSession();
@@ -48,7 +49,14 @@ const UserInfo = () => {
       </div>
     );
   }
+ const handleSignOut=()=>{
+  
 
+   
+    signOut();
+    setOpen(false);
+    toast.success("Sign Out successful");
+  }
   // ================= LOGGED IN =================
   return (
     <div className="relative">
@@ -150,10 +158,7 @@ const UserInfo = () => {
             {/* Sign Out */}
             <button
               type="button"
-              onClick={async () => {
-                await signOut();
-                setOpen(false);
-              }}
+              onClick={handleSignOut}
               className="flex w-full items-center gap-2 border-t border-gray-100 px-4 py-3 text-xs text-red-500 transition hover:bg-red-50"
             >
               <span>↪</span>

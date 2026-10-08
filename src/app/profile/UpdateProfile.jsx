@@ -10,6 +10,7 @@ import {
 } from "@heroui/react";
 import { updateUser, useSession } from "../../lib/auth-client";
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 
 const UpdateProfile = () => {
   const { data: session, isPending } = useSession();
@@ -24,13 +25,26 @@ const UpdateProfile = () => {
 
     const formData = new FormData(e.currentTarget);
     const userData = Object.fromEntries(formData.entries());
+    if (
+      userData.name === realUser.name &&
+      userData.image === realUser.image
+    ) {
+      toast.info("Your data is same");
+      setIsUpdating(false);
+      return;
+    }
 
-    const resData = await updateUser({
+    const { data, error } = await updateUser({
       name: userData.name,
       image: userData.image,
     });
-
-    console.log(resData);
+  
+    if (!error) {
+      toast.success("Update Successfully");
+    } 
+    else {
+      toast.error("Update not Successful");
+    }
 
     setIsUpdating(false);
   };

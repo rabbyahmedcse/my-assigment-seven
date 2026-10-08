@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { notFound, usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 const NavbarLink = () => {
@@ -13,10 +13,15 @@ const NavbarLink = () => {
       const res = await fetch("https://api.abcz.workers.dev/api/bazardor/categories" );
 
       if (!res.ok) {
-        return;
+
+        notFound();
       }
 
       const result = await res.json();
+       if (!result || result.length === 0) {
+            toast.warning("Please wait");
+            notFound();
+          }
       setData(result);
     };
 

@@ -14,51 +14,65 @@ import {
 import { signIn, signUp } from "../../lib/auth-client";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { toast } from "react-toastify";
 
 const SignUpPage = () => {
 
 
   const onSubmit = async (e) => {
     e.preventDefault();
-
+  
     const data = Object.fromEntries(new FormData(e.currentTarget));
-
-
+  
     if (data.password !== data.confirmPassword) {
-      console.log("Password doesn't match");
+      
+      toast.error("Password doesn't match");
       return;
     }
-
+  
     const { data: resdata, error } = await signUp.email({
       name: data.name,
       email: data.email,
       password: data.password,
       callbackURL: "/",
     });
-
-    console.log("After:", resdata);
-
+  
+    
+  
     if (error) {
-      console.log("Signup Error:", error);
+      
+      toast.error("Sign up failed");
       return;
     }
-
-    if(resdata){
-      // toast.success("Successfully Sign up")
-    
-     redirect('/');
+  
+    if (resdata) {
+      toast.success("Successfully Sign up");
+  
+      redirect("/");
     }
   };
-    const handleGoogleSignIn = async()=>{
-      const resData = await signIn.social({
-        provider:'google'
-      })
+  
+  const handleGoogleSignIn = async () => {
+    const resData = await signIn.social({
+      provider: "google",
+    });
+  
+    if (resData?.error) {
+      toast.error("Google sign up failed");
     }
-    const handleGithubSignIn = async()=>{
-        const resdata = await signIn.social({
-          provider: "github"
-      })
-      }
+      toast.success("Google sign in successful");
+  };
+  
+  const handleGithubSignIn = async () => {
+    const resdata = await signIn.social({
+      provider: "github",
+    });
+  
+    if (resdata?.error) {
+      toast.error("GitHub sign up failed");
+    }
+     toast.success("GitHub sign in successful");
+  };
 
   return (
     <div className="min-h-screen bg-[#f4f9f5] px-4 py-8">

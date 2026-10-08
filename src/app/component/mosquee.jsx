@@ -1,5 +1,6 @@
 
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import React from "react";
 import MarqueeText from "react-marquee-text";
 import "react-marquee-text/dist/styles.css";
@@ -15,10 +16,15 @@ const Mosquee = async () => {
   );
 
   if (!res.ok) {
-    return null;
+    toast.warning("Please wait");
+    notFound();
   }
 
   const data = await res.json();
+   if (!data || data.length === 0) {
+        toast.warning("Please wait");
+        notFound();
+      }
 
   const getBanglaUnit = (unit) => {
     if (unit === "kg") return "কেজি";

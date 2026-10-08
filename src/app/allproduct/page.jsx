@@ -1,21 +1,30 @@
 import React from "react";
 import CardDetails from "../component/CardDetails";
+import { toast } from "react-toastify";
+import { notFound } from "next/navigation";
 
 const AllProductPage = async () => {
   const res = await fetch(
     "https://api.abcz.workers.dev/api/bazardor/products",
     {
       next: {
-        revalidate: 60,
-      },
-    }
-  );
+        revalidate: 60, },} );
+
 
   if (!res.ok) {
-    return null;
+    toast.warning("Please wait");
+    notFound();
   }
 
   const data = await res.json();
+
+  if (!data || data.length === 0) {
+    toast.warning("Please wait");
+    notFound();
+  }
+
+
+
 
 
   return (
@@ -24,7 +33,7 @@ const AllProductPage = async () => {
 
 
 
-{/* Sob ponno */}
+
 <section className="mt-8">
     <h1 className="mb-4 text-[16px] font-bold text-gray-800">সব পণ্য</h1>
     <p className="mt-2 text-[11px] text-gray-500">

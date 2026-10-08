@@ -1,6 +1,7 @@
 import React from "react";
 import CardDetails from "./CardDetails";
 import AllProductPage from "../allproduct/page";
+import { notFound } from "next/navigation";
 
 const CostUpDownPage = async () => {
   const res = await fetch(
@@ -13,10 +14,15 @@ const CostUpDownPage = async () => {
   );
 
   if (!res.ok) {
-    return null;
+    toast.warning("Please wait");
+    notFound();
   }
 
   const data = await res.json();
+    if (!data || data.length === 0) {
+      toast.warning("Please wait");
+      notFound();
+    }
 
  
   const upCost = data.filter((item) => item.change.dir === "up").sort((a, b) => b.change.pct - a.change.pct).slice(0, 6);

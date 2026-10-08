@@ -5,6 +5,7 @@ import { useSession, signOut } from "../../lib/auth-client";
 import Link from "next/link";
 import React from "react";
 import UpdateProfile from "./UpdateProfile";
+import { toast } from "react-toastify";
 
 const ProfilePage = () => {
   const { data: session, isPending } = useSession();
@@ -18,6 +19,14 @@ const ProfilePage = () => {
         <Spinner size="md" />
       </div>
     );
+  }
+  const handleSignOut=()=>{
+   
+
+
+    signOut();
+
+    toast.success("Sign Out successful");
   }
 
 
@@ -48,23 +57,23 @@ const ProfilePage = () => {
               {/* Avatar */}
               <Avatar className="h-16 w-16">
                 <Avatar.Image
-                  alt={realUser.name || "User"}
-                  src={realUser.image || ""}
+                  alt={realUser?.name || "User"}
+                  src={realUser?.image || null}
                 />
 
                 <Avatar.Fallback>
-                  {realUser.name?.charAt(0)?.toUpperCase() || "U"}
+                  {realUser?.name?.charAt(0)?.toUpperCase() || "U"}
                 </Avatar.Fallback>
               </Avatar>
 
               {/* Name + Email */}
               <div>
                 <h2 className="text-lg font-semibold text-gray-800">
-                  {realUser.name}
+                  {realUser?.name}
                 </h2>
 
                 <p className="mt-1 text-sm text-gray-500">
-                  {realUser.email}
+                  {realUser?.email}
                 </p>
               </div>
 
@@ -73,7 +82,7 @@ const ProfilePage = () => {
             {/* Sign Out */}
             <button
               type="button"
-              onClick={()=>signOut()}
+              onClick={handleSignOut}
               className="rounded-lg border border-red-400 bg-white px-5 py-2 text-sm font-medium text-red-500 transition hover:bg-red-500 hover:text-white"
             >
               ← সাইন আউট
@@ -99,7 +108,7 @@ const ProfilePage = () => {
               </p>
 
               <p className="mt-1 text-sm font-semibold text-gray-800">
-                {realUser.name}
+                {realUser?.name}
               </p>
             </div>
 
@@ -110,7 +119,7 @@ const ProfilePage = () => {
               </p>
 
               <p className="mt-1 break-all text-sm font-semibold text-gray-800">
-                {realUser.email}
+                {realUser?.email}
               </p>
             </div>
 
@@ -122,12 +131,12 @@ const ProfilePage = () => {
 
               <p
                 className={`mt-1 text-sm font-semibold ${
-                  realUser.emailVerified
+                  realUser?.emailVerified
                     ? "text-green-600"
                     : "text-orange-500"
                 }`}
               >
-                {realUser.emailVerified
+                {realUser?.emailVerified
                   ? "✓ ভেরিফাইড"
                   : "ভেরিফাই করা হয়নি"}
               </p>
@@ -136,11 +145,11 @@ const ProfilePage = () => {
             {/* User ID */}
             <div className="rounded-xl bg-[#f7faf8] p-4">
               <p className="text-xs text-gray-500">
-                User ID
+              ছবির লিংক
               </p>
 
               <p className="mt-1 break-all text-sm font-semibold text-gray-800">
-                {realUser.id}
+                {realUser?.image}
               </p>
             </div>
 
