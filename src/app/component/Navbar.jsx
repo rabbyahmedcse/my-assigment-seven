@@ -7,7 +7,7 @@ import Mosquee from "./mosquee";
 
 const NavbarPage = () => {
   return (
-    <header className="border-t-2 border-b border-gray-100 bg-white">
+    <header className="sticky top-0 z-50 border-b border-gray-200 bg-white/95 shadow-sm backdrop-blur-md">
       <div className="mx-auto flex min-h-[80px] w-full max-w-6xl items-center justify-between gap-3 px-4 sm:px-6">
         <div className="flex min-w-0 items-center gap-2 sm:gap-3">
           <Link href="/">

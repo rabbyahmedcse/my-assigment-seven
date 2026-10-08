@@ -30,8 +30,11 @@ export default function RootLayout({ children }) {
       className={`${notoSerifbengali.variable}  h-full antialiased`}
     >
       <body className="bg-[#f8faf8] min-h-full flex flex-col ">
-        <NavbarPage></NavbarPage>
-        <Mosquee></Mosquee>
+      <div className="sticky top-0 z-50 bg-white">
+    <NavbarPage />
+    <Mosquee />
+  </div>
+        
         <div className="mx-auto w-full max-w-[1100px]">
           {children}
         </div>
