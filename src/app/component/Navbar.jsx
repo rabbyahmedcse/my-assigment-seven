@@ -3,16 +3,13 @@ import Image from "next/image";
 import NavbarLink from "./NavbarLink";
 import Link from "next/link";
 import UserInfo from "./UserInfo";
+import DatePage from "./DatePage";
 
 
 
 const NavbarPage = () => {
   
-    // const date = new Date().toLocaleDateString(
-    //     "bn-BD", {
-    //         dateStyle:'full'
-    //     }
-    // )
+    
  
 
 
@@ -45,9 +42,9 @@ const NavbarPage = () => {
               বাজার দর
             </h1>
 
-            <p className="text-[10px] text-gray-500">
-              {/* {date} */}
-            </p>
+            
+              <DatePage className="text-[10px] text-gray-500"></DatePage>
+       
           </div>
 
         </div>

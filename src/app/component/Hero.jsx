@@ -1,10 +1,10 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
+import DatePage from "./DatePage";
 
 const HeroPage = () => {
-  // const date = new Date().toLocaleDateString("bn-BD", {
-  //   dateStyle: "full",
-  // });
+  
 
   return (
     <main className=" container mx-auto  bg-white">
@@ -18,7 +18,7 @@ const HeroPage = () => {
 
             {/* Eyebrow */}
             <span className="inline-block rounded-full bg-[#e3f4e7] px-3 py-1 text-[11px] font-medium text-green-700">
-              {/* {date} */}
+              <DatePage></DatePage>
             </span>
 
             {/* Heading */}
@@ -34,12 +34,12 @@ const HeroPage = () => {
             </p>
 
             {/* CTA */}
-            <a
-              href="#সব-পণ্য"
+            <Link
+              href={'/allproduct'}
               className="mt-4 inline-flex rounded-md bg-green-600 px-4 py-2 text-[12px] font-semibold text-white shadow-sm transition hover:bg-green-700 active:scale-95"
             >
               সব পণ্য দেখুন
-            </a>
+            </Link>
           </div>
 
           {/* Right Image */}
