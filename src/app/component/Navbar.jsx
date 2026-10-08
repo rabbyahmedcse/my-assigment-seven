@@ -1,7 +1,22 @@
 
 import Image from "next/image";
 import NavbarLink from "./NavbarLink";
+import Link from "next/link";
 
+const links=<>
+    <Link href={'/signin'}>
+    <button className="rounded-md border border-green-600 bg-white px-5 py-2 text-sm font-semibold text-green-600 transition hover:bg-green-600 hover:text-white">
+            সাইন ইন
+          </button>
+    </Link>
+    <Link href={'/signup'}>
+    <button className="rounded-md border border-green-600 bg-white px-5 py-2 text-sm font-semibold text-green-600 transition hover:bg-green-600 hover:text-white">
+            সাইন আপ
+          </button>
+    </Link>
+         
+
+</>
 
 const NavbarPage = () => {
   
@@ -49,14 +64,8 @@ const NavbarPage = () => {
 
         {/* Right Side */}
         <div className="flex items-center gap-6">
-
-          <button className="rounded-md border border-green-600 bg-white px-5 py-2 text-sm font-semibold text-green-600 transition hover:bg-green-600 hover:text-white">
-            সাইন ইন
-          </button>
-
-          <button className="rounded-md border border-green-600 bg-white px-5 py-2 text-sm font-semibold text-green-600 transition hover:bg-green-600 hover:text-white">
-            সাইন আপ
-          </button>
+{links}
+      
 
         </div>
 
