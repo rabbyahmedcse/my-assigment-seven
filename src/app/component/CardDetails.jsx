@@ -9,10 +9,10 @@ const CardDetails = ({ n }) => {
   const changeIcon = isUp ? "▲" : isDown ? "▼" : "—";
 
   const changeStyle = isUp
-    ? "bg-green-50 text-green-600"
-    : isDown
-    ? "bg-red-50 text-red-500"
-    : "bg-gray-100 text-gray-500";
+  ? "bg-red-50 text-red-500"
+  : isDown
+  ? "bg-green-50 text-green-600"
+  : "bg-gray-100 text-gray-500";
 
   return (
     <div>

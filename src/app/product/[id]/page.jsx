@@ -25,23 +25,12 @@ const ProductDetailsPage = async ({ params }) => {
 
   const markets = data.markets;
 
-  const minPrice =
-    markets.length > 0
-      ? Math.min(...markets.map((item) => item.min))
-      : 0;
+  const minPrice = markets.length > 0 ? Math.min(...markets.map((item) => item.min)): 0;
 
-  const maxPrice =
-    markets.length > 0
-      ? Math.max(...markets.map((item) => item.max))
-      : 0;
+  const maxPrice = markets.length > 0  ? Math.max(...markets.map((item) => item.max)): 0;
 
-  const averagePrice =
-    markets.length > 0
-      ? markets.reduce(
-          (total, item) => total + (item.min + item.max) / 2,
-          0
-        ) / markets.length
-      : 0;
+  const averagePrice =  (minPrice + maxPrice)/2;
+    
 
   const unitText =
     data.unit === "kg"
@@ -179,7 +168,7 @@ const ProductDetailsPage = async ({ params }) => {
               </p>
 
               <p className="mt-1 text-[10px] text-gray-500 sm:text-[11px]">
-                সব বাজারের গড় মূল্য
+              প্রতি কেজি হিসেবে গড় মূল্য
               </p>
             </div>
           </div>

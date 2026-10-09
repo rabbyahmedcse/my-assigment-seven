@@ -24,6 +24,7 @@ const CategoriesPage = async ({ params }) => {
 
   const data = await res.json();
 
+
   if (!data || data.length === 0) {
     notFound();
     toast.warning("Please wait");

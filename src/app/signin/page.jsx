@@ -1,7 +1,6 @@
 "use client";
 
-import React from "react";
-
+import React, { useState } from "react";
 import {
   Form,
   Fieldset,
@@ -16,28 +15,40 @@ import { signIn } from "../../lib/auth-client";
 import Link from "next/link";
 import { toast } from "react-toastify";
 
-const page = () => {
+const Page = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    const data = Object.fromEntries(new FormData(e.currentTarget));
+    if (isLoading) return;
 
-    const { data: resdata, error } = await signIn.email({
-      email: data.email,
-      password: data.password,
-      callbackURL: "/",
-    });
+    setIsLoading(true);
 
-    if (error) {
-      toast.error("Ivalid Email or Password");
-      return;
+    try {
+      const data = Object.fromEntries(new FormData(e.currentTarget));
+
+      const { error } = await signIn.email({
+        email: data.email,
+        password: data.password,
+        callbackURL: "/",
+      });
+
+      if (error) {
+        toast.error("Invalid Email or Password");
+        return;
+      }
+
+      toast.success("Sign in successful");
+    } catch (error) {
+      toast.error("Sign in failed");
+    } finally {
+      setIsLoading(false);
     }
-
-    toast.success("Sign in successful");
   };
 
   const handleGoogleSignIn = async () => {
-    const { data: resData, error } = await signIn.social({
+    const { error } = await signIn.social({
       provider: "google",
     });
 
@@ -50,7 +61,7 @@ const page = () => {
   };
 
   const handleGithubSignIn = async () => {
-    const { data: resData, error } = await signIn.social({
+    const { error } = await signIn.social({
       provider: "github",
     });
 
@@ -121,9 +132,10 @@ const page = () => {
             <Fieldset.Actions className="mt-3">
               <Button
                 type="submit"
-                className="h-9 w-full rounded-md bg-green-600 text-[11px] font-medium text-white shadow-sm transition hover:bg-green-700 sm:h-10 sm:text-xs"
+                isDisabled={isLoading}
+                className="h-9 w-full rounded-md bg-green-600 text-[11px] font-medium text-white shadow-sm transition hover:bg-green-700 disabled:cursor-not-allowed disabled:opacity-70 sm:h-10 sm:text-xs"
               >
-                সাইন ইন
+               {isLoading ? "সাইন ইন হচ্ছে..." : "সাইন ইন"}
               </Button>
             </Fieldset.Actions>
           </Fieldset>
@@ -132,9 +144,7 @@ const page = () => {
         <div className="my-3 flex items-center gap-2 sm:my-4">
           <div className="h-px flex-1 bg-gray-200" />
 
-          <span className="text-[10px] text-gray-400">
-            অথবা
-          </span>
+          <span className="text-[10px] text-gray-400">অথবা</span>
 
           <div className="h-px flex-1 bg-gray-200" />
         </div>
@@ -145,10 +155,7 @@ const page = () => {
             type="button"
             className="flex min-h-9 w-full items-center justify-center gap-1 rounded-md border border-gray-200 bg-white px-2 py-2 text-[10px] text-gray-600 transition hover:bg-gray-50 sm:text-[11px]"
           >
-            <span className="font-bold text-red-500">
-              G
-            </span>
-
+            <span className="font-bold text-red-500">G</span>
             Google দিয়ে চালিয়ে যান
           </button>
 
@@ -157,10 +164,7 @@ const page = () => {
             type="button"
             className="flex min-h-9 w-full items-center justify-center gap-1 rounded-md border border-gray-200 bg-white px-2 py-2 text-[10px] text-gray-600 transition hover:bg-gray-50 sm:text-[11px]"
           >
-            <span className="font-bold text-gray-800">
-              ◉
-            </span>
-
+            <span className="font-bold text-gray-800">◉</span>
             GitHub দিয়ে চালিয়ে যান
           </button>
         </div>
@@ -179,4 +183,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

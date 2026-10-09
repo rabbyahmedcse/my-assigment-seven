@@ -28,7 +28,7 @@ const AllProductPage = async () => {
   }
 
   return (
-    <div className="w-full rounded-[30px] bg-[#f8faf8] px-4 py-6 sm:px-6 sm:py-8 md:px-8 lg:px-10">
+    <div className="w-full min-w-0 rounded-[30px] bg-[#f8faf8] py-6 sm:py-8">
       <section className="mx-auto mt-4 w-full max-w-6xl sm:mt-6 md:mt-8">
         <h1 className="mb-2 text-[16px] font-bold text-gray-800 sm:text-lg">
           সব পণ্য

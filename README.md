@@ -10,7 +10,7 @@ The website provides a clean and user-friendly interface so that users can quick
 
 ## 🚀 Live Project
 
-🔗 Live Website: [Add your live website link here]
+🔗 Live Website: https://my-assigment-seven.vercel.app/
 
 ---
 
@@ -75,3 +75,20 @@ For example:
 ```text
 স্বর্ণমাছি চাল
 ১৪৮ টাকা / কেজি
+### 4. 📈 Price Increase and Decrease
+
+Users can easily identify whether the price of a product has increased or decreased compared to previous prices.
+
+- 🔴 Red indicators show price increases.
+- 🟢 Green indicators show price decreases.
+- Users can quickly understand daily price changes and compare price trends.
+
+### 5. 🏪 Market-wise Price Comparison
+
+Users can compare the prices of products across different markets in Bangladesh.
+
+- View the minimum price in different markets.
+- View the maximum price in different markets.
+- Check the average market price for each product.
+
+This feature helps users compare market prices and find useful pricing information before shopping.

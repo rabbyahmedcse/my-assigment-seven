@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import {
   Form,
   Fieldset,
@@ -17,8 +17,12 @@ import { redirect } from "next/navigation";
 import { toast } from "react-toastify";
 
 const SignUpPage = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
   const onSubmit = async (e) => {
     e.preventDefault();
+
+    if (isLoading) return;
 
     const data = Object.fromEntries(new FormData(e.currentTarget));
 
@@ -27,22 +31,27 @@ const SignUpPage = () => {
       return;
     }
 
-    const { data: resdata, error } = await signUp.email({
-      name: data.name,
-      email: data.email,
-      password: data.password,
-      callbackURL: "/",
-    });
+    setIsLoading(true);
 
-    if (error) {
-      toast.error("Sign up failed");
-      return;
-    }
+    try {
+      const { data: resdata, error } = await signUp.email({
+        name: data.name,
+        email: data.email,
+        password: data.password,
+        callbackURL: "/",
+      });
 
-    if (resdata) {
-      toast.success("Successfully Sign up");
+      if (error) {
+        toast.error("Sign up failed");
+        return;
+      }
 
-      redirect("/");
+      if (resdata) {
+        toast.success("Successfully Sign up");
+        redirect("/");
+      }
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -53,7 +62,9 @@ const SignUpPage = () => {
 
     if (resData?.error) {
       toast.error("Google sign up failed");
+      return;
     }
+
     toast.success("Google sign in successful");
   };
 
@@ -64,7 +75,9 @@ const SignUpPage = () => {
 
     if (resdata?.error) {
       toast.error("GitHub sign up failed");
+      return;
     }
+
     toast.success("GitHub sign in successful");
   };
 
@@ -108,11 +121,7 @@ const SignUpPage = () => {
                 <FieldError className="text-[10px]" />
               </TextField>
 
-              <TextField
-                isRequired
-                name="email"
-                type="email"
-              >
+              <TextField isRequired name="email" type="email">
                 <Label className="text-[11px] font-medium text-gray-700 sm:text-xs">
                   ইমেইল
                 </Label>
@@ -151,11 +160,7 @@ const SignUpPage = () => {
                 <FieldError className="text-[10px]" />
               </TextField>
 
-              <TextField
-                isRequired
-                name="confirmPassword"
-                type="password"
-              >
+              <TextField isRequired name="confirmPassword" type="password">
                 <Label className="text-[11px] font-medium text-gray-700 sm:text-xs">
                   পাসওয়ার্ড নিশ্চিত করুন
                 </Label>
@@ -173,9 +178,10 @@ const SignUpPage = () => {
             <Fieldset.Actions className="mt-3">
               <Button
                 type="submit"
-                className="h-9 w-full rounded-md bg-green-600 text-[11px] font-medium text-white shadow-sm transition hover:bg-green-700 sm:h-10 sm:text-xs"
+                isDisabled={isLoading}
+                className="h-9 w-full rounded-md bg-green-600 text-[11px] font-medium text-white shadow-sm transition hover:bg-green-700 disabled:cursor-not-allowed disabled:opacity-70 sm:h-10 sm:text-xs"
               >
-                অ্যাকাউন্ট তৈরি করুন
+                {isLoading ? "সাইন আপ হচ্ছে..." : "অ্যাকাউন্ট তৈরি করুন"}
               </Button>
             </Fieldset.Actions>
           </Fieldset>
@@ -184,9 +190,7 @@ const SignUpPage = () => {
         <div className="my-3 flex items-center gap-2 sm:my-4">
           <div className="h-px flex-1 bg-gray-200" />
 
-          <span className="text-[10px] text-gray-400">
-            অথবা
-          </span>
+          <span className="text-[10px] text-gray-400">অথবা</span>
 
           <div className="h-px flex-1 bg-gray-200" />
         </div>
@@ -197,10 +201,7 @@ const SignUpPage = () => {
             type="button"
             className="flex min-h-9 w-full items-center justify-center gap-1 rounded-md border border-gray-200 bg-white px-2 py-2 text-[10px] text-gray-600 transition hover:bg-gray-50 sm:text-[11px]"
           >
-            <span className="font-bold text-red-500">
-              G
-            </span>
-
+            <span className="font-bold text-red-500">G</span>
             Google দিয়ে চালিয়ে যান
           </button>
 
@@ -209,10 +210,7 @@ const SignUpPage = () => {
             type="button"
             className="flex min-h-9 w-full items-center justify-center gap-1 rounded-md border border-gray-200 bg-white px-2 py-2 text-[10px] text-gray-600 transition hover:bg-gray-50 sm:text-[11px]"
           >
-            <span className="font-bold text-gray-800">
-              ◉
-            </span>
-
+            <span className="font-bold text-gray-800">◉</span>
             GitHub দিয়ে চালিয়ে যান
           </button>
         </div>

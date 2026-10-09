@@ -25,15 +25,9 @@ const CostUpDownPage = async () => {
     notFound();
   }
 
-  const upCost = data
-    .filter((item) => item.change.dir === "up")
-    .sort((a, b) => b.change.pct - a.change.pct)
-    .slice(0, 6);
+  const upCost = data.filter((item) => item.change.dir === "up").sort((a, b) => b.change.pct - a.change.pct).slice(0, 6);
 
-  const downCost = data
-    .filter((item) => item.change.dir === "down")
-    .sort((a, b) => a.change.pct - b.change.pct)
-    .slice(0, 6);
+  const downCost = data.filter((item) => item.change.dir === "down").sort((a, b) => a.change.pct - b.change.pct).slice(0, 6);
 
   return (
     <div className="w-full rounded-[30px] bg-[#f8faf8] px-4 py-6 sm:px-6 sm:py-8 md:px-8 lg:px-10">
@@ -61,7 +55,10 @@ const CostUpDownPage = async () => {
         </div>
       </section>
 
-      <section id="products" className="mx-auto w-full max-w-6xl">
+      <section
+        id="products"
+        className="w-full min-w-0"
+      >
         <AllProductPage></AllProductPage>
       </section>
     </div>
