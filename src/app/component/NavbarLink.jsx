@@ -16,14 +16,13 @@ const NavbarLink = () => {
       );
 
       if (!res.ok) {
-        notFound();
+        return null;
       }
 
       const result = await res.json();
 
       if (!result || result.length === 0) {
-        toast.warning("Please wait");
-        notFound();
+        return null;
       }
 
       setData(result);

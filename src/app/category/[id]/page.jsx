@@ -18,16 +18,15 @@ const CategoriesPage = async ({ params }) => {
   );
 
   if (!res.ok) {
-    notFound();
-    toast.warning("Please wait");
+    return null;
+    
   }
 
   const data = await res.json();
 
 
   if (!data || data.length === 0) {
-    notFound();
-    toast.warning("Please wait");
+    return null;
   }
 
   const resdata = [...data];

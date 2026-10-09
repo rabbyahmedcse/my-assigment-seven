@@ -14,13 +14,13 @@ const ProductDetailsPage = async ({ params }) => {
   );
 
   if (!res.ok) {
-    notFound();
+    return null;
   }
 
   const data = await res.json();
 
   if (!data || data.length === 0) {
-    notFound();
+    return null;
   }
 
   const markets = data.markets;

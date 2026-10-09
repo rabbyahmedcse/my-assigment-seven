@@ -16,15 +16,16 @@ const AllProductPage = async () => {
   );
 
   if (!res.ok) {
-    toast.warning("Please wait");
-    notFound();
+   
+    return null;
+    
   }
 
   const data = await res.json();
 
   if (!data || data.length === 0) {
-    toast.warning("Please wait");
-    notFound();
+   
+    return null;
   }
 
   return (

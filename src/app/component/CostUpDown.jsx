@@ -14,15 +14,13 @@ const CostUpDownPage = async () => {
   );
 
   if (!res.ok) {
-    toast.warning("Please wait");
-    notFound();
+    return null;
   }
 
   const data = await res.json();
 
   if (!data || data.length === 0) {
-    toast.warning("Please wait");
-    notFound();
+    return null;
   }
 
   const upCost = data.filter((item) => item.change.dir === "up").sort((a, b) => b.change.pct - a.change.pct).slice(0, 6);
